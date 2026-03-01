@@ -29,9 +29,8 @@ symlink() {
 echo "Installing dotfiles from $DOTFILES_DIR..."
 
 symlink ".claude/CLAUDE.md"
-
-# Add more symlinks here as you add files to this repo, e.g.:
-# symlink ".gitconfig"
-# symlink ".zshrc"
+symlink ".gitconfig"
+symlink ".gitignore_global"
+symlink ".zshrc"
 
 echo "Done."

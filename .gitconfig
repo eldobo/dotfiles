@@ -1,0 +1,29 @@
+[user]
+	name = Eric Anderson
+	email = eldobo@outlook.com
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[core]
+	excludesfile = ~/.gitignore_global
+
+[color]
+	ui = auto
+
+[alias]
+	st     = status
+	co     = checkout
+	br     = branch -vv
+	lg     = log --oneline --graph --decorate --all
+	undo   = reset HEAD~1 --mixed
+	unstage = reset HEAD --
+	last   = log -1 HEAD --stat
+	aliases = config --get-regexp alias
+	wip    = !git add -A && git commit -m "WIP"
