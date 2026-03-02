@@ -4,6 +4,8 @@ Personal configuration files for development environments. Managed with symlinks
 
 ## Setup on a new machine
 
+### macOS / Linux
+
 ```bash
 git clone git@github.com:eldobo/dotfiles.git ~/github.com/eldobo/dotfiles
 cd ~/github.com/eldobo/dotfiles
@@ -11,7 +13,17 @@ cd ~/github.com/eldobo/dotfiles
 source ~/.zshrc
 ```
 
-That's it. Open a new terminal and everything is live.
+### Windows
+
+```powershell
+git clone https://github.com/eldobo/dotfiles.git $HOME\github.com\eldobo\dotfiles
+cd $HOME\github.com\eldobo\dotfiles
+.\install.ps1
+```
+
+The Windows installer uses hard links (no admin required) and prompts for a work git identity if you need multi-account support. It skips `.zshrc` since it's not applicable.
+
+Open a new terminal and everything is live.
 
 ## What's included
 
