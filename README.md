@@ -1,10 +1,21 @@
 # dotfiles
 
-Personal configuration files for development environments. Managed with symlinks so changes sync across machines via git.
+Shared development configuration that works across macOS and Windows, and across personal and work machines. The goal: clone one repo, run one script, and get a consistent dev environment — git aliases, global gitignore, Claude Code standards — regardless of OS or account.
+
+**What each platform gets:**
+
+| File | macOS / Linux | Windows |
+|------|:---:|:---:|
+| `.gitconfig` (aliases, settings) | Symlinked | Included via `[include]` |
+| `.gitignore_global` | Symlinked | Hard linked |
+| `.claude/CLAUDE.md` | Symlinked | Hard linked |
+| `.zshrc` (shell config) | Symlinked | Skipped |
+
+**Personal vs. work machines:** This repo stores the personal git identity (`eldobo`). On a personal machine, that identity is used everywhere. On a work machine, the Windows installer prompts for your work git identity and sets it as the default, then uses `[includeIf]` to automatically switch to the personal identity for repos under `~/github.com/eldobo/`. No credentials are stored in the repo.
 
 ## Setup on a new machine
 
-### macOS / Linux
+### macOS / Linux (personal)
 
 ```bash
 git clone git@github.com:eldobo/dotfiles.git ~/github.com/eldobo/dotfiles
@@ -13,7 +24,7 @@ cd ~/github.com/eldobo/dotfiles
 source ~/.zshrc
 ```
 
-### Windows
+### Windows (work or personal)
 
 ```powershell
 git clone https://github.com/eldobo/dotfiles.git $HOME\github.com\eldobo\dotfiles
@@ -21,7 +32,7 @@ cd $HOME\github.com\eldobo\dotfiles
 .\install.ps1
 ```
 
-The Windows installer uses hard links (no admin required) and prompts for a work git identity if you need multi-account support. It skips `.zshrc` since it's not applicable.
+The Windows installer uses hard links (no admin required) and prompts for a work git identity if you need multi-account support. It skips `.zshrc` since it's not applicable on Windows.
 
 Open a new terminal and everything is live.
 
@@ -81,4 +92,7 @@ User-level instructions for [Claude Code](https://github.com/anthropics/claude-c
 
 ## Machine-specific config
 
-For settings that shouldn't be committed (machine-specific paths, work credentials, private env vars), create `~/.zshrc.local`. It's sourced automatically by `.zshrc` but is gitignored.
+For settings that shouldn't be committed (machine-specific paths, work credentials, private env vars):
+
+- **macOS / Linux:** Create `~/.zshrc.local` — sourced automatically by `.zshrc` but gitignored.
+- **Windows:** The installer creates `~/.gitconfig` and `~/.gitconfig-personal` locally — these are not part of the repo and won't be pushed.
